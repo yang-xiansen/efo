@@ -78,8 +78,9 @@ public class FileController {
     public String upload(int categoryId, String tag, String description, String prefix, @RequestParam("file")
             MultipartFile multipartFile) {
         User user = (User) request.getSession().getAttribute(ValueConsts.USER_STRING);
-        return ControllerUtils.getResponse(fileService.upload(categoryId, tag, description, prefix, multipartFile,
-                user));
+        Boolean isUpload = fileService.upload(categoryId, tag, description, prefix, multipartFile,
+                user);
+        return ControllerUtils.getResponse(isUpload);
     }
 
     @ApiOperation(value = "获取文件记录")
